@@ -1,0 +1,15 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+button {
+    border-style: dashed;
+    border-color: black;
+    border-width: 2px;
+    font-size: 20px;
+    margin: 20px;
+    width: 50%;
+    align-self: center;
+}
