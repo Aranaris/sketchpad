@@ -44,9 +44,9 @@ function resetGrid() {
 }
 
 function getRandomColor() {
-    const r = Math.floor(Math.random()*256);
-    const g = Math.floor(Math.random()*256);
-    const b = Math.floor(Math.random()*256);
+    const r = Math.ceil(Math.random()*255);
+    const g = Math.ceil(Math.random()*255);
+    const b = Math.ceil(Math.random()*255);
     return `rgb(${r}, ${g}, ${b})`;
 }
 
