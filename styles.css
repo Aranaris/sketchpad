@@ -13,3 +13,15 @@ button {
     width: 50%;
     align-self: center;
 }
+
+#sketchpad {
+    display: grid;
+    border: solid;
+    border-color: red;
+}
+
+.gridSquare {
+    border: dashed;
+    border-color: gray;
+    aspect-ratio: 1;
+}
