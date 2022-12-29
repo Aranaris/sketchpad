@@ -17,11 +17,11 @@ function generateGrid(size) {
     }
 }
 
-function addMouseover() {
+function addMouseover(color) {
     document.querySelector('#sketchpad').addEventListener('mouseover', (event) => {
         const tile = event.target;
         if (tile.classList.contains('gridSquare')) {
-            tile.style['background-color'] = 'blue';
+            tile.style['background-color'] = color;
         }
     } )
 }
@@ -32,12 +32,26 @@ function resetGrid() {
         const oldTiles = document.querySelectorAll('.gridSquare');
         oldTiles.forEach(tile => tile.remove());
         const newSize = prompt("Please enter the edge size of your new grid (limit 100)");
+        document.querySelector('#sketchpad').removeEventListener('mouseover', (event) => {
+            const tile = event.target;
+            if (tile.classList.contains('gridSquare')) {
+                tile.style['background-color'] = color;
+            }
+        } );
+        addMouseover(getRandomColor());
         generateGrid(newSize);
     });
 }
 
+function getRandomColor() {
+    const r = Math.floor(Math.random()*256);
+    const g = Math.floor(Math.random()*256);
+    const b = Math.floor(Math.random()*256);
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
 initialLoad();
-addMouseover();
+addMouseover(getRandomColor());
 resetGrid();
 
 generateGrid(16);
