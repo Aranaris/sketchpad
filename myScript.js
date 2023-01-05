@@ -50,9 +50,9 @@ function resetGrid() {
         document.querySelector('#sketchpad').removeEventListener('mouseover', (event) => {
             const tile = event.target;
             if (tile.classList.contains('gridSquare')) {
-                tile.style['background-color'] = `rgb(${color.join()})`;
+                tile.style['background-color'] = `rgb(${color})`;
             }
-        } );
+        });
         addMouseover();
         generateGrid(newSize);
     });
@@ -66,7 +66,7 @@ function getRandomColor() {
 }
 
 initialLoad();
-addMouseover(getRandomColor());
+addMouseover();
 resetGrid();
 
 generateGrid(16);
