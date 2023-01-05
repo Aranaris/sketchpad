@@ -8,6 +8,7 @@ function generateGrid(size) {
     const sketchpad = document.querySelector('#sketchpad');
     sketchpad.style['grid-template-columns'] = `repeat(${size}, minmax(10px, 1fr))`;
     sketchpad.style['grid-template-rows'] = `repeat(${size}, minmax(10px, 1fr)`;
+    sketchpad.dataset['size'] = size;
     for (let x = 1; x <= size; x++){
         for (let y = 1; y <= size; y++) {
             const newSquare = document.createElement('div');
@@ -28,14 +29,14 @@ function addMouseover() {
     });
     sketchpad.addEventListener('touchmove', (event) => {
         event.preventDefault();
+        const allTiles = sketchpad.querySelectorAll('.gridSquare');
+        const size = Number(sketchpad.dataset['size']);
+        const rect = allTiles[0].getBoundingClientRect();
         for (const touch of event.changedTouches) {
-            for (const tile of sketchpad.querySelectorAll('.gridSquare')) {
-                const rect = tile.getBoundingClientRect();
-                if (touch.clientX >= rect.left && touch.clientX < rect.right &&
-                    touch.clientY >= rect.top && touch.clientY < rect.bottom) {
-                    tile.style['background-color'] = `rgb(${color})`;
-                }
-            }
+            const x = Math.floor((touch.clientX - rect.left) / rect.width);
+            const y = Math.floor((touch.clientY - rect.top) / rect.height);
+            const tile = allTiles[y * size + x];
+            tile.style['background-color'] = `rgb(${color})`;
         }
     });
 }
