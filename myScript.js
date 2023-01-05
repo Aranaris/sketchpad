@@ -19,10 +19,23 @@ function generateGrid(size) {
 
 function addMouseover() {
     const color = getRandomColor().join();
-    document.querySelector('#sketchpad').addEventListener('mouseover', (event) => {
+    const sketchpad = document.querySelector('#sketchpad');
+    sketchpad.addEventListener('mouseover', (event) => {
         const tile = event.target;
         if (tile.classList.contains('gridSquare')) {
             tile.style['background-color'] = `rgb(${color})`;
+        }
+    });
+    sketchpad.addEventListener('touchmove', (event) => {
+        event.preventDefault();
+        for (const touch of event.changedTouches) {
+            for (const tile of sketchpad.querySelectorAll('.gridSquare')) {
+                const rect = tile.getBoundingClientRect();
+                if (touch.clientX >= rect.left && touch.clientX < rect.right &&
+                    touch.clientY >= rect.top && touch.clientY < rect.bottom) {
+                    tile.style['background-color'] = `rgb(${color})`;
+                }
+            }
         }
     });
 }
