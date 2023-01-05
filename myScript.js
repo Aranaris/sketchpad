@@ -18,13 +18,13 @@ function generateGrid(size) {
 }
 
 function addMouseover() {
-    color = getRandomColor();
+    const color = getRandomColor().join();
     document.querySelector('#sketchpad').addEventListener('mouseover', (event) => {
         const tile = event.target;
         if (tile.classList.contains('gridSquare')) {
-            tile.style['background-color'] = `rgb(${color.join()})`;
+            tile.style['background-color'] = `rgb(${color})`;
         }
-    } )
+    });
 }
 
 function resetGrid() {
